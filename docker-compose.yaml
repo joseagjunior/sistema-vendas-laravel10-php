@@ -1,0 +1,16 @@
+version: "3.2"
+services:
+  db:
+    container_name: laravel-db
+    image: postgres:alpine
+    restart: always
+    hostname: postgres
+    volumes:
+      - ./ivar/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: laravel_db
+      POSTGRES_USER: laravel
+      POSTGRES_PASSWORD: pg123
+    command: ["-c", "shared_buffers=256MB", "-c", "max_connections=2000"]
+    ports:
+      - "5432:5432"
